@@ -7,5 +7,6 @@
 <body>
     <a href="question1/List_model.php">Question 1</a><br>
     <a href="question2/New_proprietaire.php">Question 2</a><br>
+    <a href="question3/recherche.php">Question 3</a><br>
 </body>
 </html>
