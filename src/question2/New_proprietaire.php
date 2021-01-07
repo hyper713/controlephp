@@ -7,7 +7,7 @@
     <title>Question 2</title>
     <style>
         div {
-            width: 400px;
+            width: 300px;
             clear: both;
             margin-bottom: 5;
             
