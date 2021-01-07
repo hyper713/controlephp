@@ -7,17 +7,21 @@
     <title>Question 1</title>
 </head>
 <body>
-    <table border="1">
-        <tr>
-            <th>Modele</th>
-            <th>Marque</th>
-            <th>Puissance</th>
-            <th>Carburant</th>
-        </tr>
-        <?php
-            $request = $conn->prepare("SELECT * FROM model ORDER BY marque");
-            $request->execute();
-            $rows = $request->fetchAll(PDO::FETCH_ASSOC);
+    <?php
+        $request = $conn->prepare("SELECT * FROM model ORDER BY marque");
+        $request->execute();
+        $rows = $request->fetchAll(PDO::FETCH_ASSOC);
+
+        if($request->rowCount()!=0){
+            echo('<table border="1">');
+            echo("
+                <tr>
+                    <th>Modele</th>
+                    <th>Marque</th>
+                    <th>Puissance</th>
+                    <th>Carburant</th>
+                </tr>
+            ");
 
             foreach ($rows as $key => $value) {
                 echo("<tr>");
@@ -25,8 +29,13 @@
                 echo("<td>".$value['marque']."</td>");
                 echo("<td>".$value['puissance']."</td>");
                 echo("<td>".$value['carburant']."</td>");
+                echo("</tr>");
             }
-        ?>
-    </table>
+            echo("</table>");
+        }
+        else{
+            echo("Aucune donnée disponible");
+        }
+    ?>
 </body>
 </html>

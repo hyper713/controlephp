@@ -48,27 +48,32 @@
             $request->execute($data);
             $rows = $request->fetchAll(PDO::FETCH_ASSOC);
 
-            echo('<table border="1">');
-            echo("
-                <tr>
-                    <th>Couleur</th>
-                    <th>Kilometrage</th>
-                    <th>Modele</th>
-                    <th>Marque</th>
-                    <th>Puissance</th>
-                    <th>Carburant</th>
-                </tr>
-            ");
+            if($request->rowCount()!=0){
+                echo('<table border="1">');
+                echo("
+                    <tr>
+                        <th>Couleur</th>
+                        <th>Kilometrage</th>
+                        <th>Modele</th>
+                        <th>Marque</th>
+                        <th>Puissance</th>
+                        <th>Carburant</th>
+                    </tr>
+                ");
 
-            foreach ($rows as $key => $value) {
-                echo("<tr>");
-                echo("<td>".$value['couleur']."</td>");
-                echo("<td>".$value['kilometrage']."</td>");
-                echo("<td>".$value['modele']."</td>");
-                echo("<td>".$value['marque']."</td>");
-                echo("<td>".$value['puissance']."</td>");
-                echo("<td>".$value['carburant']."</td>");
-                echo("</tr>");
+                foreach ($rows as $key => $value) {
+                    echo("<tr>");
+                    echo("<td>".$value['couleur']."</td>");
+                    echo("<td>".$value['kilometrage']."</td>");
+                    echo("<td>".$value['modele']."</td>");
+                    echo("<td>".$value['marque']."</td>");
+                    echo("<td>".$value['puissance']."</td>");
+                    echo("<td>".$value['carburant']."</td>");
+                    echo("</tr>");
+                } 
+            }
+            else{
+                echo("Aucune donnée disponible");
             }
         }
     ?>

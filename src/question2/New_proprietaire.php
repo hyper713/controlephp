@@ -12,7 +12,7 @@
             margin-bottom: 5;
             
         }
-        input:not(.buttons) {
+        input:not(#buttons) {
             float: right;
         }
     </style>
@@ -58,13 +58,12 @@
                 ?>
             </select>
         </div>
-        <input class="buttons" type="submit" value="Ajouter">
-        <input class="buttons" type="reset" value="Annuler">
+        <input id="buttons" type="submit" value="Ajouter">
+        <input id="buttons" type="reset" value="Annuler">
     </form>
 
     <?php
         if (isset($_POST['nom']) and isset($_POST['prenom']) and isset($_POST['adresse']) and isset($_POST['codepostal']) and isset($_POST['ville']) and isset($_POST['telephone']) and isset($_POST['immatriculation'])){
-            echo("good");
             $request = $conn->prepare("INSERT INTO proprietaire(NOM, PRENOM, ADRESSE, CODE_POSTAL, VILLE, TEL, ID_VOITURE) VALUES (:firstname, :secondname, :address, :zip, :city, :phone, :car)");
 
             $data = array(
@@ -78,6 +77,10 @@
             );
 
             $request->execute($data);
+
+            if($request->rowCount()!=0){
+                echo("La proprietaire est créé");
+            }
         }
     ?>
 </body>
